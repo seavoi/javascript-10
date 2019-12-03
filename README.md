@@ -4,4 +4,4 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 
 ## Greetings
 
-## Task list:
+## Next step:
