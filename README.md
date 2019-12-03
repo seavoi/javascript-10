@@ -5,3 +5,5 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 ## Greetings
 
 ## Next step:
+
+-- Build your app components
