@@ -6,4 +6,4 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 
 ## Next step:
 
--- Build your app components
+Build the "CourseDetail" component and it's friends
