@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 /* Components */
 import Header from './Header';
 import CourseList from './CourseList';
+import CourseDetail from './CourseDetail';
 
 export default class App extends Component {
 
@@ -15,7 +16,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
+    fetch(`http://localhost:5000/api/courses`)
     .then(response => response.json())
     .then(responseData => {
       this.setState({ courses: responseData.course });
@@ -33,7 +34,8 @@ export default class App extends Component {
 
           <Header />
           <CourseList data={this.state.courses} />
-
+          <CourseDetail data={this.state.courses} />
+          
           <Switch>
 
           </Switch>
