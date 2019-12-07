@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactMarkdown from "react-markdown";
-
-/* Subomponents */
-import ActionBar from './subcomponents/ActionBar';
+import {Link} from 'react-router-dom';
 
 export default class CourseDetail extends Component {
 
@@ -46,7 +44,19 @@ export default class CourseDetail extends Component {
     return (
     	
     	<div>
-    		<ActionBar />
+
+    		<div className="actions--bar">
+			    <div className="bounds">
+			      <div className="grid-100">
+			      	<span>
+			      		<Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
+			      		<Link className="button" to="#">Delete Course</Link>
+			    		</span>
+			    		<Link className="button button-secondary" to="/">Return to List</Link>
+			    	</div>
+			    </div>
+			  </div>
+
 	      <div className="bounds course--detail">
 	        <div className="grid-66">
 	          <div className="course--header">
