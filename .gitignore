@@ -1,3 +1,20 @@
+	const detail = props.data;
+	let courseDetails = detail.map(courseDetail => 
+		<courseDetail 
+			//key={courseDetail.id} 
+			title={courseDetail.title} 
+			//description={courseDetail.description} 
+			//firstName={courseDetail.User.firstName} 
+			//lastName={courseDetail.User.lastName}
+			//estimatedTime={courseDetail.estimatedTime}
+			//materialsNeeded={courseDetail.materialsNeeded} />
+	);
+
+
+
+
+
+
 # Logs
 logs
 *.log

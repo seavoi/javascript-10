@@ -1,58 +1,80 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactMarkdown from "react-markdown";
 
-const CourseList = props => {
+/* Subomponents */
+import ActionBar from './subcomponents/ActionBar';
 
-	const detail = props.data;
-	let courseDetails = detail.map(courseDetail => 
-		<courseDetail 
-			key={courseDetail.id} 
-			title={courseDetail.title} 
-			description={courseDetail.description} 
-			firstName={courseDetail.User.firstName} 
-			lastName={courseDetail.User.lastName}
-			estimatedTime={courseDetail.estimatedTime}
-			materialsNeeded={courseDetail.materialsNeeded} />
-	);
+export default class CourseDetail extends Component {
 
-	return(
-		<div>
-			<div class="actions--bar">
-	      <div class="bounds">
-	        <div class="grid-100"><span><a class="button" href="update-course.html">Update Course</a><a class="button" href="#">Delete Course</a></span><a
-	            class="button button-secondary" href="index.html">Return to List</a></div>
-	      </div>
+	constructor() {
+    super();
+    this.state = {
+      courseDetails: [],
+      courseInstructor: []
+    };
+  }
+
+  componentDidMount() {
+    fetch(`http://localhost:5000/api/courses/1`)
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({ courseDetails: responseData.course });
+      this.setState({ courseInstructor: responseData.course.User });
+    })
+    .catch(error => {
+      console.log('Uh-oh! We ran into an issue while retrieving a the details of a requested course.', error);
+    });
+  }
+
+  render() {
+
+  	const {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+    } = this.state.courseDetails;
+
+    const {
+      firstName,
+      lastName
+    } = this.state.courseInstructor;
+
+    return (
+    	
+    	<div>
+    		<ActionBar />
+	      <div className="bounds course--detail">
+	        <div className="grid-66">
+	          <div className="course--header">
+	          	<h4 className="course--label">Course</h4>
+	          	<h3 className="course--title">{title}</h3>
+	          	<p>By {firstName} {lastName}</p>
+	          </div>
+	          <div className="course--description">
+	          	<ReactMarkdown source={description} />
+	          </div>
+		      </div>
+		      <div className="grid-25 grid-right">
+		      	<div className="course--stats">
+              <ul className="course--stats--list">
+                <li className="course--stats--list--item">
+                  <h4>Estimated Time</h4>
+                  <h3>{estimatedTime}</h3>
+                </li>
+                <li className="course--stats--list--item">
+                  <h4>Materials Needed</h4>
+                  <ul>
+                    <ReactMarkdown source={materialsNeeded} />
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+		    </div>
 	    </div>
-	    <div class="bounds course--detail">
-	      <div class="grid-66">
-	        <div class="course--header">
-	          <h4 class="course--label">Course</h4>
-	          <h3 class="course--title">{props.title}</h3>
-	          <p>By {props.firstName} {props.lastName}</p>
-	        </div>
-	        <div class="course--description">
-	          {props.description}
-	        </div>
-	      </div>
-	      <div class="grid-25 grid-right">
-	        <div class="course--stats">
-	          <ul class="course--stats--list">
-	            <li class="course--stats--list--item">
-	              <h4>Estimated Time</h4>
-	              <h3>{props.estimatedTime}</h3>
-	            </li>
-	            <li class="course--stats--list--item">
-	              <h4>Materials Needed</h4>
-	              <ul>
-	                {courseDetails}
-	              </ul>
-	            </li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
-    </div>
-	);
+
+    );
+  }
 
 }
-
-export default CourseList;
