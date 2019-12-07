@@ -5,10 +5,7 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 ## Greetings
 
 ## Next step:
+Context: https://teamtreehouse.com/library/create-context 
 
-Firgure out action bar to get us to the course updater <Link className="button" to={`courses/${props.id}/update`}>Update Course</Link> 
-
-https://teamtreehouse.com/library/using-url-parameters
-
-Set up UserSignOut when you get to authenticaiton 
-//<Route path="/signout" component={UserSignOut} />
+## Other notes:
+Set up UserSignOut when you get to authenticaiton <Route path="/signout" component={UserSignOut} />
