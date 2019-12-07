@@ -7,8 +7,7 @@ export default class UserSignUp extends Component {
     firstName: '',
     lastName: '',
     emailAddress: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   };
 
 	/* Cancel Event */
@@ -30,7 +29,21 @@ export default class UserSignUp extends Component {
   actionSubmit = (event) => {
     event.preventDefault();
 
-    const { firstName, lastName, emailAddress, password, confirmPassword } = this.state;
+    const { firstName, lastName, emailAddress, password } = this.state;
+    const user = { firstName, lastName, emailAddress, password };
+
+    console.log(firstName);
+
+    fetch('http://localhost:5000/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName, lastName, emailAddress, password })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => {
+      console.log('You in danger girl.', error);
+    });
 
   }
 
