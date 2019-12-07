@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class UserSignOut extends React.PureComponent {
+export default class UserSignOut extends Component {
 
  	render() {
     return (

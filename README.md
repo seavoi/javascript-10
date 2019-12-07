@@ -6,5 +6,4 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 
 ## Next step:
 
-Move the current componentDidMount to Course.js
-Build the "CourseDetail" component and it's friends
+Set up UserSignOut when you get to authenticaiton 

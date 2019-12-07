@@ -5,6 +5,10 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './Header';
 import Course from './Course';
 import CourseDetail from './CourseDetail';
+import UserSignIn from './UserSignIn';
+import UserSignUp from './UserSignUp';
+import CreateCourse from './CreateCourse';
+import UpdateCourse from './UpdateCourse';
 
 export default class App extends Component {
 
@@ -15,7 +19,7 @@ export default class App extends Component {
 
           <Header />
           
-          <CourseDetail />
+          <UpdateCourse />
           
           <Switch>
 
