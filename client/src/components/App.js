@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 /* Components */
 import Header from './Header';
@@ -14,19 +14,21 @@ export default class App extends Component {
 
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div>
-
           <Header />
-          
-          <UpdateCourse />
-          
+          <hr />
           <Switch>
-
+            <Route exact path="/" component={Course} />
+            <Route exact path="/courses" render={() => <Redirect to="/" />} />
+            <Route path="/courses/create" component={CreateCourse} />
+            <Route path="/courses/:id/update" component={UpdateCourse} />
+            <Route path="/courses/:id" component={CourseDetail} />
+            <Route path="/signin" component={UserSignIn} />
+            <Route path="/signup" component={UserSignUp} />
           </Switch>
-
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 

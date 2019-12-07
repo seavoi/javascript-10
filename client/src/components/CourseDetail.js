@@ -15,7 +15,10 @@ export default class CourseDetail extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/1`)
+
+  	const {id} = this.props.match.params;
+
+    fetch(`http://localhost:5000/api/courses/${id}`)
     .then(response => response.json())
     .then(responseData => {
       this.setState({ courseDetails: responseData.course });

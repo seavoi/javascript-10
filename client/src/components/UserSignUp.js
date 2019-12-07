@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 export default class UserSignUp extends Component {
 
@@ -27,12 +28,12 @@ export default class UserSignUp extends Component {
                </div>
               <div className="grid-100 pad-bottom">
               	<button className="button" type="submit">Sign Up</button>
-              	<button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+              	<button className="button button-secondary" onclick="event.preventDefault(); location.href='/index.html';">Cancel</button>
               </div>
             </form>
           </div>
           <p>&nbsp;</p>
-          <p>Already have a user account? <a href="sign-in.html">Click here</a> to sign in!</p>
+          <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
         </div>
       </div>
 

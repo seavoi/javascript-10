@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class Header extends React.PureComponent {
 
@@ -9,7 +10,7 @@ export default class Header extends React.PureComponent {
           <h1 className="header--logo">Courses</h1>
           <nav>
           	<span>Welcome Joe Smith!</span>
-          	<a className="signout" href="index.html">Sign Out</a>
+          	<Link className="signout" to="/">Sign Out</Link>
           </nav>
         </div>
       </div>
