@@ -5,11 +5,10 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 ## Greetings
 
 ## Next Steps:
-Start working on authentication
+Start working on authentication!
 
 ## Notes:
-Started working on context — feeling lost
-Not sure if the Create Course file is working
+Started working on context
 
 ## Other notes:
 Set up UserSignOut when you get to authenticaiton <Route path="/signout" component={UserSignOut} />
