@@ -3,6 +3,12 @@ import {Link} from 'react-router-dom';
 
 export default class UserSignIn extends Component {
 
+	/* Cancel Button */
+  btnCancel = (event) => {
+  	event.preventDefault();
+    this.props.history.push(`/`);
+  }
+
  	render() {
     return (
 		  
@@ -19,7 +25,7 @@ export default class UserSignIn extends Component {
               </div>
               <div className="grid-100 pad-bottom">
               	<button className="button" type="submit">Sign In</button>
-              	<button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+              	<button className="button button-secondary" onClick={(event) => this.btnCancel(event)}>Cancel</button>
               </div>
             </form>
           </div>
