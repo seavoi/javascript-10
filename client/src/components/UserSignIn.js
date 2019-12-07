@@ -23,6 +23,25 @@ export default class UserSignIn extends Component {
     })
 	}
 
+	/* Form Submit Event */
+	actionSubmit = (event) => {
+		event.preventDefault();
+
+		const { emailAddress, password } = this.state;
+
+		/* fetch('http://localhost:5000/api/courses', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ title, description, materialsNeeded, estimatedTime })
+		})
+		.then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => {
+      console.log('You in danger girl.', error);
+    }); */
+
+	}
+
  	render() {
     return (
 		  
@@ -30,7 +49,7 @@ export default class UserSignIn extends Component {
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
           <div>
-            <form>
+            <form onSubmit={this.actionSubmit}>
               <div>
               	<input id="emailAddress" name="emailAddress" type="text" placeholder="Email Address" onChange={this.actionChange} value={this.state.emailAddress} />
               </div>

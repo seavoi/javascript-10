@@ -4,10 +4,9 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 
 ## Greetings
 
-## Next step:
-Context: https://teamtreehouse.com/library/create-context 
-- OR -
-Revisit CourseCreator
+## Notes:
+Started working on context — feeling lost
+Not sure if the Create Course file is working
 
 ## Other notes:
 Set up UserSignOut when you get to authenticaiton <Route path="/signout" component={UserSignOut} />
