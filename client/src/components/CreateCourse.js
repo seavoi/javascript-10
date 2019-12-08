@@ -19,9 +19,11 @@ export default class CreateCourse extends Component {
 	actionChange = (event) => {
 		const value = event.target.value;
     const name = event.target.name;
-    this.setState({
-        [name] : value
-    })
+    this.setState(() => {
+      return {
+        [name]: value
+      };
+    });
 	}
 
 	/* Form Submit Event */

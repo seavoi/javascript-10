@@ -7,7 +7,8 @@ export default class UserSignUp extends Component {
     firstName: '',
     lastName: '',
     emailAddress: '',
-    password: ''
+    password: '',
+    errors: [],
   };
 
 	/* Cancel Event */
@@ -20,9 +21,11 @@ export default class UserSignUp extends Component {
   actionChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    this.setState({
-        [name] : value
-    })
+    this.setState(() => {
+      return {
+        [name]: value
+      };
+    });
   }
 
   /* Form Submit Event */
@@ -48,6 +51,14 @@ export default class UserSignUp extends Component {
   }
 
  	render() {
+
+    const {
+      name,
+      username,
+      password,
+      errors,
+    } = this.state;
+
     return (
 		  
     	<div className="bounds">

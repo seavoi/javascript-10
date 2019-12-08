@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 
 import './global.css';
 
-import App from './components/App';
+import { Provider } from './Context';
+import App from './App';
 
 ReactDOM.render(
-	<App />,
+	<Provider>
+    <App />
+  </Provider>,
 	document.getElementById('root')
 );

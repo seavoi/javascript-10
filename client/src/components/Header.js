@@ -5,8 +5,6 @@ export default class Header extends Component {
 
  	render() {
 
-    const { context } = this.props;
-
     return (
 		  <div className="header">
         <div className="bounds">
