@@ -7,8 +7,5 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 ## Next Steps:
 Start working on authentication!
 
-## Notes:
-Started working on context
-
 ## Other notes:
 Set up UserSignOut when you get to authenticaiton <Route path="/signout" component={UserSignOut} />

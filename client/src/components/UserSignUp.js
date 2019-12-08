@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Form from './subcomponents/Form';
 
 export default class UserSignUp extends Component {
 
@@ -8,13 +9,13 @@ export default class UserSignUp extends Component {
     lastName: '',
     emailAddress: '',
     password: '',
+    confirmPassword: '',
     errors: [],
   };
 
 	/* Cancel Event */
-  actionCancel = (event) => {
-  	event.preventDefault();
-    this.props.history.push(`/`);
+  actionCancel = () => {
+  	this.props.history.push('/');
   }
 
   /* Change Event */
@@ -29,33 +30,37 @@ export default class UserSignUp extends Component {
   }
 
   /* Form Submit Event */
-  actionSubmit = (event) => {
-    event.preventDefault();
+  actionSubmit = () => {
+
+    const { context } = this.props;
 
     const { firstName, lastName, emailAddress, password } = this.state;
+
     const user = { firstName, lastName, emailAddress, password };
 
-    console.log(firstName);
-
-    fetch('http://localhost:5000/api/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName, lastName, emailAddress, password })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => {
-      console.log('You in danger girl.', error);
-    });
+    context.data.createUser(user)
+    .then( errors => {
+      if (errors.length) {
+        this.setState({ errors });
+      } else {
+        console.log(`${firstName} is successfully signed up and authenticated!`);
+      }
+    }) 
+    .catch( err => {
+      console.log(err);
+      this.props.history.push('/error');
+    }); 
 
   }
 
  	render() {
 
     const {
-      name,
-      username,
+      firstName,
+      lastName,
+      emailAddress,
       password,
+      confirmPassword,
       errors,
     } = this.state;
 
@@ -65,27 +70,50 @@ export default class UserSignUp extends Component {
         <div className="grid-33 centered signin">
           <h1>Sign Up</h1>
           <div>
-            <form onSubmit={this.actionSubmit}>
-              <div>
-              	<input id="firstName" name="firstName" type="text" placeholder="First Name" onChange={this.actionChange} value={this.state.firstName} />
-              </div>
-              <div>
-              	<input id="lastName" name="lastName" type="text" placeholder="Last Name" onChange={this.actionChange} value={this.state.lastName} />
-              </div>
-              <div>
-              	<input id="emailAddress" name="emailAddress" type="text" placeholder="Email Address" onChange={this.actionChange} value={this.state.emailAddress} />
-          		</div>
-              <div>
-              	<input id="password" name="password" type="password" placeholder="Password" onChange={this.actionChange} value={this.state.password} />
-            	</div>
-              <div>
-              	<input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" onChange={this.actionChange} value={this.state.confirmPassword} />
-               </div>
-              <div className="grid-100 pad-bottom">
-              	<button className="button" type="submit">Sign Up</button>
-              	<button className="button button-secondary" onClick={(event) => this.actionCancel(event)}>Cancel</button>
-              </div>
-            </form>
+            <Form 
+              cancel={this.actionCancel}
+              errors={errors}
+              submit={this.actionSubmit}
+              submitButtonText="Sign Up"
+              elements={() => (
+              <React.Fragment>
+                <input 
+                  id="firstName" 
+                  name="firstName" 
+                  type="text"
+                  value={firstName} 
+                  onChange={this.actionChange} 
+                  placeholder="First Name" />
+                <input 
+                  id="lastName" 
+                  name="lastName" 
+                  type="text"
+                  value={lastName} 
+                  onChange={this.actionChange} 
+                  placeholder="Last Name" />
+                <input 
+                  id="emailAddress" 
+                  name="emailAddress" 
+                  type="email"
+                  value={emailAddress}
+                  onChange={this.actionChange} 
+                  placeholder="Email Address" />
+                <input 
+                  id="password" 
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={this.actionChange} 
+                  placeholder="Password" />
+                <input 
+                  id="confirmPassword" 
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={this.actionChange} 
+                  placeholder="Cofirm Password" />
+              </React.Fragment>
+            )} />
           </div>
           <p>&nbsp;</p>
           <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>

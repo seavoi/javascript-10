@@ -1,37 +1,59 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Form from './subcomponents/Form';
 
 export default class UserSignIn extends Component {
 
 	state = {
 		emailAddress: '',
-		password: ''
+		password: '',
+    errors: [],
 	};
 
 	/* Cancel Event */
-  actionCancel = (event) => {
-  	event.preventDefault();
-    this.props.history.push(`/`);
+  actionCancel = () => {
+    this.props.history.push('/');
   }
 
   /* Change Event */
-	actionChange = (event) => {
-		const value = event.target.value;
+  actionChange = (event) => {
+    const value = event.target.value;
     const name = event.target.name;
     this.setState(() => {
       return {
         [name]: value
       };
     });
-	}
+  }
 
 	/* Form Submit Event */
-	actionSubmit = (event) => {
-		event.preventDefault();
+	actionSubmit = () => {
+
+    const { context } = this.props;
+    const { emailAddress, password } = this.state;
+    context.actions.signIn(emailAddress, password)
+    .then( user => {
+      if (user === null) {
+        this.setState(() => {
+          return { errors: [ 'Sign-in was unsuccessful' ] };
+        });
+      } else {
+         this.props.history.push('/authenticated');
+         console.log(`SUCCESS! ${emailAddress} is now signed in!`);
+      }
+    })
+    .catch( err => {
+      console.log(err);
+      this.props.history.push('/error');
+    })
+
+    //const user = { firstName, lastName, emailAddress, password };
+
+		/* event.preventDefault();
 
 		const { emailAddress, password } = this.state;
 
-		/* fetch('http://localhost:5000/api/courses', {
+		fetch('http://localhost:5000/api/courses', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ title, description, materialsNeeded, estimatedTime })
@@ -45,24 +67,43 @@ export default class UserSignIn extends Component {
 	}
 
  	render() {
+
+    const {
+      emailAddress,
+      password,
+      errors,
+    } = this.state;
+
     return (
 		  
     	<div className="bounds">
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
           <div>
-            <form onSubmit={this.actionSubmit}>
-              <div>
-              	<input id="emailAddress" name="emailAddress" type="text" placeholder="Email Address" onChange={this.actionChange} value={this.state.emailAddress} />
-              </div>
-              <div>
-              	<input id="password" name="password" type="password" placeholder="Password" onChange={this.actionChange} value={this.state.password} />
-              </div>
-              <div className="grid-100 pad-bottom">
-              	<button className="button" type="submit">Sign In</button>
-              	<button className="button button-secondary" onClick={(event) => this.actionCancel(event)}>Cancel</button>
-              </div>
-            </form>
+
+             <Form 
+              cancel={this.actionCancel}
+              errors={errors}
+              submit={this.actionSubmit}
+              submitButtonText="Sign In"
+              elements={() => (
+                <React.Fragment>
+                  <input 
+                    id="emailAddress" 
+                    name="emailAddress" 
+                    type="text"
+                    value={emailAddress}
+                    onChange={this.actionChange} 
+                    placeholder="User Name" />
+                  <input 
+                    id="password" 
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={this.actionChange} 
+                    placeholder="Password" />                
+                </React.Fragment>
+              )} />
           </div>
           <p>&nbsp;</p>
           <p>Don't have a user account? <Link to="/signup">Click here</Link> to sign up!</p>
