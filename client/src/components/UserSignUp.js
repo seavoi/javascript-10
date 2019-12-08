@@ -44,7 +44,7 @@ export default class UserSignUp extends Component {
         console.log(`${firstName} is successfully signed up and authenticated!`);
         context.actions.signIn( firstName, lastName, emailAddress, password )
         .then(() => {
-          this.props.history.push('/');    
+          this.props.history.push('/signin');    
         });
       }
     }) 

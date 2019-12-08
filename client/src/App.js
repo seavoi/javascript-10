@@ -1,12 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
-/* Context */
-import withContext from './Context';
-
-/* Private Routes */
-import PrivateRoute from './PrivateRoute';
-
 /* Components */
 import Header from './components/Header';
 import Course from './components/Course';
@@ -16,6 +10,12 @@ import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import UserSignOut from './components/UserSignOut';
+
+/* Context */
+import withContext from './Context';
+
+/* Private Routes */
+import PrivateRoute from './PrivateRoute';
 
 /* Context Components */
 const HeaderWithContext = withContext(Header);

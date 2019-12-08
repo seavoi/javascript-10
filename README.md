@@ -5,7 +5,6 @@ Sean Voigts (https://teamtreehouse.com/projects/full-stack-app-with-react-and-a-
 ## Greetings
 
 ## Next Steps:
-Start working on authentication!
+Write password match verification for UserSignUp
 
-## Other notes:
-Set up UserSignOut when you get to authenticaiton <Route path="/signout" component={UserSignOut} />
+Might need to revisit Protected Routes - https://teamtreehouse.com/library/react-authentication/react-router-and-authentication/protect-routes-that-require-authentication 

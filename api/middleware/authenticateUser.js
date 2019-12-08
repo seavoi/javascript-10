@@ -34,10 +34,10 @@ const authenticateUser = async (req, res, next) => {
       if (authenticated) {
         req.currentUser = user;
       } else {
-        message = `Authentication failure for username: ${user.emailAddress}`;
+        message = `Authentication failure for email: ${user.emailAddress}`;
       }
     } else {
-      message = `User not found for username: ${credentials.name}`;
+      message = `User not found for email: ${credentials.name}`;
     }
   } else {
     message = 'Oops, no authorization header was found';
