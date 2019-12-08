@@ -33,9 +33,7 @@ export default class UserSignUp extends Component {
   actionSubmit = () => {
 
     const { context } = this.props;
-
     const { firstName, lastName, emailAddress, password } = this.state;
-
     const user = { firstName, lastName, emailAddress, password };
 
     context.data.createUser(user)
@@ -44,6 +42,10 @@ export default class UserSignUp extends Component {
         this.setState({ errors });
       } else {
         console.log(`${firstName} is successfully signed up and authenticated!`);
+        context.actions.signIn( firstName, lastName, emailAddress, password )
+        .then(() => {
+          this.props.history.push('/');    
+        });
       }
     }) 
     .catch( err => {
