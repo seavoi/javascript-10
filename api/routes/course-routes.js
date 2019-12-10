@@ -22,18 +22,17 @@ router.get('/courses', async (req, res, next) => {
   try {
     course = await Course.findAll({
       model: Course,
-      attributes: {
-        include: ['id', 'userId', 'title', 'description', 'estimatedTime', 'materialsNeeded'],
+      attributes: { 
+        include: ['id', 'title', 'description', 'estimatedTime', 'materialsNeeded'],
         exclude: ['createdAt', 'updatedAt']
       },
-      include: [{ 
+      include: [{
         model: User,
         attributes: {
-          include: ['id', 'firstName', 'lastName', 'emailAddress'],
-          exclude: ['password', 'createdAt', 'updatedAt']
+          include:['id', 'firstName', 'lastName', 'emailAddress'],
+          exclude:['password', 'createdAt', 'updatedAt']
         }
-      }] 
-
+      }],
     });
     res.json({course}).status(200);
     //console.log(course);

@@ -17,7 +17,7 @@ export default class Data {
 
     if (requiresAuth) {    
       const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
-      
+
       console.log(encodedCredentials);
       console.log(credentials.password); 
 
@@ -66,7 +66,7 @@ export default class Data {
       });
     }
     else {
-      throw new Error();
+      throw new Error('Uh oh! We can not create that course — check that log.');
     }
   }
   
