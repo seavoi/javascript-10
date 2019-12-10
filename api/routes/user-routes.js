@@ -23,10 +23,11 @@ router.get('/users', authenticateUser, async (req, res, next) => {
   try {
     const user = await req.currentUser;
     res.status(200).json({
+      userId: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       emailAddress: user.emailAddress,
-      // password: user.password
+      password: user.password
     });
   } catch (err) {
     console.error("There's been an error: ", err);
