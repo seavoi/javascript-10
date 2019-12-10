@@ -93,7 +93,7 @@ export default class CreateCourse extends Component {
                       onChange={this.actionChange} 
                       placeholder="Title" />
                   </div>
-                  <p>By {authUser.firstName} {authUser.lastName}</p>
+                  <p>By {authUser.firstName} {authUser.lastName} {authUser.password}</p>
                 </div>
                 <div className="course--description">
                   <div>
