@@ -48,13 +48,23 @@ export default class UpdateCourse extends Component {
               <div className="course--header">
                 <h4 className="course--label">Course</h4>
                 <div>
-                	<input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value={title} />
+                	<input 
+                    id="title" 
+                    name="title" 
+                    type="text" 
+                    className="input-title course--title--input" 
+                    placeholder="Course title..." 
+                    value={title} />
               	</div>
                 <p>By Joe Smith</p>
               </div>
               <div className="course--description">
                 <div>
-                	<textarea id="description" name="description" className="" placeholder="Course description..." value={description} />
+                	<textarea 
+                    id="description" 
+                    name="description"
+                    placeholder="Course description..." 
+                    value={description} />
 								</div>
               </div>
             </div>
@@ -64,21 +74,35 @@ export default class UpdateCourse extends Component {
                   <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div>
-                    	<input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input" placeholder="Hours" value={estimatedTime} />
+                    	<input 
+                        id="estimatedTime" 
+                        name="estimatedTime" 
+                        type="text" 
+                        className="course--time--input" 
+                        placeholder="Hours" 
+                        value={estimatedTime} />
                     </div>
                   </li>
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <div>
-                    	<textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List materials..." value={materialsNeeded} />
+                    	<textarea 
+                        id="materialsNeeded" 
+                        name="materialsNeeded" 
+                        placeholder="List materials..." 
+                        value={materialsNeeded} />
 										</div>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="grid-100 pad-bottom">
-            	<button className="button" type="submit">Update Course</button>
-            	<button className="button button-secondary" onClick={(event) => this.actionCancel(event)}>Cancel</button>
+            	<button 
+                className="button" 
+                type="submit">Update Course</button>
+            	<button 
+                className="button button-secondary" 
+                onClick={(event) => this.actionCancel(event)}>Cancel</button>
             </div>
           </form>
         </div>

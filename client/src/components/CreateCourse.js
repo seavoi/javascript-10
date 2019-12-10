@@ -34,12 +34,11 @@ export default class CreateCourse extends Component {
     const authUser = context.authenticatedUser;
 
     const { title, description, materialsNeeded, estimatedTime } = this.state;
-
     const userId = context.authenticatedUser.id;
-
     const courseInformation = { userId, title, description, materialsNeeded, estimatedTime };
 
     context.data.createCourse(courseInformation, authUser.emailAddress, authUser.passsword)
+
     .then( errors => {
       if (errors.length) {
         this.setState({ errors });
