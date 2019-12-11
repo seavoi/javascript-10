@@ -35,7 +35,7 @@ export default class CourseDetail extends Component {
     await context.data.removeCourse(id, authUser.emailAddress, authUser.password)
     .then(response => {
       if (response === 204) {
-        console.log("Course deleted");
+        console.log("Your request to delete a course was successful.");
         this.props.history.push('/');
       } else if (response === 500) {
         this.props.history.push('/error');
