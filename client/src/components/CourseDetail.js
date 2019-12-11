@@ -27,13 +27,31 @@ export default class CourseDetail extends Component {
     });
   }
 
+  /* Delete Event */
+  actionDelete = async () => {
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    const id = this.state.courseDetails.id;
+    await context.data.removeCourse(id, authUser.emailAddress, authUser.password)
+    .then(response => {
+      if (response === 204) {
+        this.props.history.push('/');
+      } else if (response === 500) {
+        this.props.history.push('/error');
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   courseInstructorActions = () => {
     const { context } = this.props;
     if (this.state.courseInstructor.id === context.authenticatedUser.id) {
       return(
         <span>
           <Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
-          <Link className="button" to="#">Delete Course</Link>
+          <button className="button" onClick={this.actionDelete}>Delete Course</button>
         </span>
       )
     }

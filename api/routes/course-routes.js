@@ -98,8 +98,10 @@ router.put('/courses/:id', authenticateUser, checkCourse, async (req, res, next)
     const course = await Course.findByPk(req.params.id);
 
     if (!errors.isEmpty()) {
+
       const errorMessages = errors.array().map(error => error.msg);
       return res.status(400).json({ errors: errorMessages });
+      
     }
 
     await course.update(req.body);

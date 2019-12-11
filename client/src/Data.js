@@ -69,5 +69,38 @@ export default class Data {
       throw new Error('Uh oh! We can not create that course — check that log.');
     }
   }
+
+  async updateCourse(id, courseInformation, emailAddress, password) {
+
+    password=atob(password);
+
+    const response = await this.api(`/courses/${id}`, 'PUT', courseInformation, true, { emailAddress, password });
+    if (response.status === 204) {
+      return [];
+    }
+    else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    }
+    else {
+      throw new Error('Uh oh! We can not edit that course.');
+    }
+  }
   
+  async removeCourse(id, emailAddress, password) {
+
+    password=atob(password);
+
+    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
+    if (response.status === 204) {
+      return 204;
+    } else if (response.status === 403 || response.status === 404){
+      return response.json();
+    }
+    else {
+      throw new Error('Uh oh! We can not delete that course.');
+    }
+  }
+
 }

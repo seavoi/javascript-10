@@ -39,18 +39,12 @@ export class Provider extends Component {
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password);
     if (user !== null) {
-      console.log(password);
       user.password=btoa(password);
-      console.log(user.password);
-      const decryptedPassword = atob(user.password);
-      console.log(decryptedPassword);
-
       this.setState(() => {
         return {
           authenticatedUser: user
         };
       });
-      console.log(user);
       Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 });
     }
     return user;
