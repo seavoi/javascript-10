@@ -27,6 +27,18 @@ export default class CourseDetail extends Component {
     });
   }
 
+  courseInstructorActions = () => {
+    const { context } = this.props;
+    if (this.state.courseInstructor.id === context.authenticatedUser.id) {
+      return(
+        <span>
+          <Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
+          <Link className="button" to="#">Delete Course</Link>
+        </span>
+      )
+    }
+  }
+
   render() {
 
   	const {
@@ -48,10 +60,7 @@ export default class CourseDetail extends Component {
     		<div className="actions--bar">
 			    <div className="bounds">
 			      <div className="grid-100">
-			      	<span>
-			      		<Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
-			      		<Link className="button" to="#">Delete Course</Link>
-			    		</span>
+                {this.courseInstructorActions()}
 			    		<Link className="button button-secondary" to="/">Return to List</Link>
 			    	</div>
 			    </div>
