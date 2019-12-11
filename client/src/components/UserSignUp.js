@@ -10,7 +10,7 @@ export default class UserSignUp extends Component {
     emailAddress: '',
     password: '',
     confirmPassword: '',
-    errors: [],
+    errors: []
   };
 
 	/* Cancel Event */
@@ -30,28 +30,45 @@ export default class UserSignUp extends Component {
   }
 
   /* Form Submit Event */
-  actionSubmit = () => {
+  actionSubmit = async () => {
 
     const { context } = this.props;
-    const { firstName, lastName, emailAddress, password } = this.state;
-    const user = { firstName, lastName, emailAddress, password };
+    const { firstName, lastName, emailAddress, password, confirmPassword, errors } = this.state;
 
-    context.data.createUser(user)
-    .then( errors => {
-      if (errors.length) {
-        this.setState({ errors });
-      } else {
-        console.log(`${firstName} is successfully signed up and authenticated!`);
-        context.actions.signIn( firstName, lastName, emailAddress, password )
-        .then(() => {
-          this.props.history.push('/signin');    
-        });
-      }
-    }) 
-    .catch( err => {
-      console.log(err);
-      this.props.history.push('/error');
-    }); 
+    if(errors){
+      this.setState({errors: []})
+    }
+
+    // Confirm password match
+    if (password !== confirmPassword){
+      this.setState(prevState => ({
+        errors: [...prevState.errors, "Passwords do not match"]
+      }));
+    } else {
+
+      // Create new user payload
+      const user = { firstName, lastName, emailAddress, password };
+
+      await context.data.createUser(user)
+      .then( error => {
+        if (error === 500) {
+          this.props.history.push('/error');
+        } else if (error.errors) {
+          this.setState({
+            errors: Object.values(error.errors)
+          })
+        } else if (error === 201) {
+          console.log(`Welcome, ${firstName}.`);
+          context.actions.signIn(emailAddress, password)
+          this.props.history.push('/');    
+        }
+      }) 
+      .catch( err => {
+        console.log(err);
+        this.props.history.push('/error');
+      }); 
+
+    }
 
   }
 
@@ -63,7 +80,7 @@ export default class UserSignUp extends Component {
       emailAddress,
       password,
       confirmPassword,
-      errors,
+      errors
     } = this.state;
 
     return (
