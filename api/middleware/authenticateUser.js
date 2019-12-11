@@ -34,7 +34,7 @@ const authenticateUser = async (req, res, next) => {
       if (authenticated) {
         req.currentUser = user;
       } else {
-        message = `Authentication failure for email: ${user.emailAddress}`;
+        message = `${user.emailAddress} is not authenticated.`;
       }
     } else {
       message = `User not found for email: ${credentials.name}`;
@@ -47,7 +47,7 @@ const authenticateUser = async (req, res, next) => {
   if (message) {
     console.warn(message);
     // Return a response with a 401 Unauthorized HTTP status code.
-    res.status(401).json({ message: 'Access Denied' });
+    res.status(401).json({ message});
   } else {
     next();
   }

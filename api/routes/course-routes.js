@@ -81,7 +81,6 @@ router.post('/courses', authenticateUser, checkCourse, async (req, res) => {
       return res.status(400).json({ errors: errorMessages });
     } else {
       course = await Course.create(req.body);
-      //console.log(course);
       res.location(`/api/courses/${course.id}`).status(201).end();
     }
 
@@ -116,7 +115,6 @@ router.put('/courses/:id', authenticateUser, checkCourse, async (req, res, next)
 router.delete('/courses/:id', authenticateUser, async (req, res) => {
   try {
     course = await Course.findByPk(req.params.id);
-    // console.log(course);
     course.destroy();
     res.status(204).end();
   } catch (err) {

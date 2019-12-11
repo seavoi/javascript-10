@@ -1,6 +1,7 @@
 import config from './config';
 
 export default class Data {
+
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
     const url = config.apiBaseUrl + path;
   
@@ -17,15 +18,11 @@ export default class Data {
 
     if (requiresAuth) {    
       const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
-
-      console.log(encodedCredentials);
-      console.log(credentials.password); 
-
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
 
     return fetch(url, options);
-  }d
+  }
 
   async getUser(emailAddress, password) {
     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
@@ -56,6 +53,9 @@ export default class Data {
   }
 
   async createCourse(courseInformation, emailAddress, password) {
+
+    password=atob(password);
+
     const response = await this.api('/courses', 'POST', courseInformation, true, { emailAddress, password });
     if (response.status === 201) {
       return [];

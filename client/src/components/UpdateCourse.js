@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 
 export default class UpdateCourse extends Component {
 
-	constructor() {
+  constructor() {
     super();
     this.state = {
       courseDetails: []
     };
   }
-
+  
   componentDidMount() {
 
-  	const {id} = this.props.match.params;
+    const {id} = this.props.match.params;
 
     fetch(`http://localhost:5000/api/courses/${id}`)
     .then(response => response.json())
@@ -25,13 +25,13 @@ export default class UpdateCourse extends Component {
 
   /* Cancel Event */
   actionCancel = (event) => {
-  	event.preventDefault();
+    event.preventDefault();
     this.props.history.push(`/courses/${this.props.match.params.id}`);
   }
 
- 	render() {
+  render() {
 
- 		const {
+    const {
       title,
       description,
       estimatedTime,
@@ -40,7 +40,7 @@ export default class UpdateCourse extends Component {
 
     return (
 
-    	<div className="bounds course--detail">
+      <div className="bounds course--detail">
         <h1>Update Course</h1>
         <div>
           <form>
@@ -48,24 +48,24 @@ export default class UpdateCourse extends Component {
               <div className="course--header">
                 <h4 className="course--label">Course</h4>
                 <div>
-                	<input 
+                  <input 
                     id="title" 
                     name="title" 
                     type="text" 
                     className="input-title course--title--input" 
                     placeholder="Course title..." 
                     value={title} />
-              	</div>
+                </div>
                 <p>By Joe Smith</p>
               </div>
               <div className="course--description">
                 <div>
-                	<textarea 
+                  <textarea 
                     id="description" 
                     name="description"
                     placeholder="Course description..." 
                     value={description} />
-								</div>
+                </div>
               </div>
             </div>
             <div className="grid-25 grid-right">
@@ -74,7 +74,7 @@ export default class UpdateCourse extends Component {
                   <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div>
-                    	<input 
+                      <input 
                         id="estimatedTime" 
                         name="estimatedTime" 
                         type="text" 
@@ -86,29 +86,29 @@ export default class UpdateCourse extends Component {
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <div>
-                    	<textarea 
+                      <textarea 
                         id="materialsNeeded" 
                         name="materialsNeeded" 
                         placeholder="List materials..." 
                         value={materialsNeeded} />
-										</div>
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="grid-100 pad-bottom">
-            	<button 
+              <button 
                 className="button" 
                 type="submit">Update Course</button>
-            	<button 
+              <button 
                 className="button button-secondary" 
                 onClick={(event) => this.actionCancel(event)}>Cancel</button>
             </div>
           </form>
         </div>
       </div>
-		  
-  	);
+      
+    );
   }
 
 }

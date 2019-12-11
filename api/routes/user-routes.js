@@ -26,7 +26,7 @@ router.get('/users', authenticateUser, async (req, res, next) => {
       firstName: user.firstName,
       lastName: user.lastName,
       emailAddress: user.emailAddress,
-      password: user.password
+      id: user.id
     });
   } catch (err) {
     console.error("There's been an error: ", err);

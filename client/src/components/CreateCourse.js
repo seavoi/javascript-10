@@ -33,7 +33,7 @@ export default class CreateCourse extends Component {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
 
-    console.log(authUser.password);
+    // console.log(authUser.password);
 
     const { title, description, materialsNeeded, estimatedTime } = this.state;
     const userId = context.authenticatedUser.id;
@@ -46,10 +46,7 @@ export default class CreateCourse extends Component {
         this.setState({ errors });
       } else {
         console.log(`${title} was successfully created!`);
-        context.actions.createCourse( userId, title, description, materialsNeeded, estimatedTime )
-        .then(() => {
-          this.props.history.push('/');    
-        });
+        this.props.history.push('/');    
       }
     }) 
     .catch( err => {
@@ -95,7 +92,7 @@ export default class CreateCourse extends Component {
                       onChange={this.actionChange} 
                       placeholder="Title" />
                   </div>
-                  <p>By {authUser.firstName} {authUser.lastName} {authUser.password}</p>
+                  <p>By {authUser.firstName} {authUser.lastName}</p>
                 </div>
                 <div className="course--description">
                   <div>
