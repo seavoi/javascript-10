@@ -13,6 +13,7 @@ export default class UpdateCourse extends Component {
     courseDetails: []
   };
 
+  // Pull current course information from the ID within the URL
   componentDidMount() {
     const {id} = this.props.match.params;
     fetch(`http://localhost:5000/api/courses/${id}`)

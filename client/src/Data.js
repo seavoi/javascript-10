@@ -53,9 +53,10 @@ export default class Data {
   }
 
   async createCourse(courseInformation, emailAddress, password) {
-
+    // Unhashed version of the password used for authentication in the API
     password=atob(password);
 
+    // Sends course information from CreateCourse.js to API
     const response = await this.api('/courses', 'POST', courseInformation, true, { emailAddress, password });
     if (response.status === 201) {
       return [];
@@ -71,9 +72,10 @@ export default class Data {
   }
 
   async updateCourse(id, courseInformation, emailAddress, password) {
-
+    // Unhashed version of the password used for authentication in the API
     password=atob(password);
 
+    // Sends new course information from UpdateCourse.js to API
     const response = await this.api(`/courses/${id}`, 'PUT', courseInformation, true, { emailAddress, password });
     if (response.status === 204) {
       return [];
@@ -89,7 +91,7 @@ export default class Data {
   }
   
   async removeCourse(id, emailAddress, password) {
-
+    // Unhashed version of the password used for authentication in the API
     password=atob(password);
 
     const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });

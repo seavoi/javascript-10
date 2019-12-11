@@ -12,6 +12,7 @@ export default class CourseDetail extends Component {
     };
   }
 
+  // Pull course information based on the ID within the URL
   componentDidMount() {
 
   	const {id} = this.props.match.params;
@@ -32,6 +33,8 @@ export default class CourseDetail extends Component {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
     const id = this.state.courseDetails.id;
+
+    // Send delete request to Data.js
     await context.data.removeCourse(id, authUser.emailAddress, authUser.password)
     .then(response => {
       if (response === 204) {
@@ -48,14 +51,21 @@ export default class CourseDetail extends Component {
 
   courseInstructorActions = () => {
     const { context } = this.props;
-    if (this.state.courseInstructor.id === context.authenticatedUser.id) {
-      return(
-        <span>
-          <Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
-          <button className="button" onClick={this.actionDelete}>Delete Course</button>
-        </span>
-      )
+    const authUser = context.authenticatedUser;
+
+    // Checks to see if there is currently any authenticatedUser data
+    if (authUser !== null) {
+      // Checks to see authenticatedUser data matches courseInstructor 
+      if (this.state.courseInstructor.id === authUser.id) {
+        return(
+          <span>
+            <Link className="button" to={`./${this.props.match.params.id}/update`}>Update Course</Link>
+            <button className="button" onClick={this.actionDelete}>Delete Course</button>
+          </span>
+        )
+      }
     }
+
   }
 
   render() {

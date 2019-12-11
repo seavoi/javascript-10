@@ -13,6 +13,7 @@ export default class Course extends Component {
     };
   }
 
+  // Gather all of the courses for index list
   componentDidMount() {
     fetch(`http://localhost:5000/api/courses`)
     .then(response => response.json())
