@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 /* Subomponents */
 import CourseCard from './subcomponents/CourseCard';
 
-export default class Course extends Component {
+export default class Courses extends Component {
 
   constructor() {
     super();

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 /* Components */
 import Header from './components/Header';
-import Course from './components/Course';
+import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
@@ -33,7 +33,7 @@ export default () => (
       <hr />
       <Switch>
 
-        <Route exact path="/" component={Course} />
+        <Route exact path="/" component={Courses} />
         <Route exact path="/courses" render={() => <Redirect to="/" />} />
 
         <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />

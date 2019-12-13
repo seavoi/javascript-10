@@ -34,7 +34,8 @@ export default class UpdateCourse extends Component {
 
   /* Cancel Event */
   actionCancel = () => {
-    this.props.history.push(`/`);
+    const {id} = this.props.match.params;
+    this.props.history.push(`/courses/${id}`);
   }
 
   /* Change Event */
